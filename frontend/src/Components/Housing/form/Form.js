@@ -195,18 +195,18 @@ const handleApartmentTypeChange = (e) => {
       });
       console.log('Form submitted successfully:', response.data);
       // Reset the form fields
-      setName('');
-      setEmail('');
-      setRent('');
-      setRooms('');
-      setBathroom('');
-      setSquareFeet('');
-      setTerrace('');
-      setAddress('');
-      setLandmark('');
-      setContactNumber('');
-      //setImage(null);
-      setImages([])
+      // setName('');
+      // setEmail('');
+      // setRent('');
+      // setRooms('');
+      // setBathroom('');
+      // setSquareFeet('');
+      // setTerrace('');
+      // setAddress('');
+      // setLandmark('');
+      // setContactNumber('');
+      // //setImage(null);
+      // setImages([])
     } catch (error) {
       console.error('Error submitting form:', error);
     }
