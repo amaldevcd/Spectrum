@@ -42,7 +42,12 @@ const Qns = (props) => {
       ...enteredSolutionData,
     };
     console.log(solutionData);
-    props.fetchQnA();
+    // props.fetchQnA();
+    
+  };
+
+  const reloadQnaHandler = () => {
+    props.onAddAnswer();
   };
 
   const token = localStorage.getItem("token");
@@ -96,7 +101,7 @@ const Qns = (props) => {
       if (response.ok) {
         // Comment added successfully
         setComments([...comments, comment]);
-        props.fetchQnA();
+        props.onAddcomment();
         console.log("Comment added successfully");
       } else {
         // Handle error case
@@ -138,7 +143,7 @@ const Qns = (props) => {
           </div>
           <div className="asker">{props.author}</div>
           <div className="likes">
-            {props.likes} 
+            {props.likes + " "} 
             <button className="likebutton" onClick={handleLike}>
               {liked ? (
                 <i className="fas fa-thumbs-down"></i>
@@ -283,6 +288,7 @@ const Qns = (props) => {
                     <NewAnswer
                       id={props.id}
                       onSolveQuestion={saveSolvedQuestionDataHandler}
+                      onAddAns={reloadQnaHandler}
                     />
                   )}
                 </div>

@@ -17,9 +17,13 @@ const registerUser = async (req, res) => {
 
         req.body.password = encryptedPassword;
         let user = await User.create(req.body);
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
-            expiresIn: "2h",
-        });
+        const token = jwt.sign(
+            { user_id: user._id, email},
+            process.env.JWT_SECRET,
+            {
+              expiresIn: "10h",
+            }
+          );
 
         user._doc.token = token;
         res.status(200).json(user);

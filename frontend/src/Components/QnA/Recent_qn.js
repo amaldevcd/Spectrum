@@ -18,7 +18,13 @@ const Recent_qn = (props) => {
     };
     // props.onAddQuestion();
     console.log(solutionData);
+
   };
+
+  const reloadQnsHandler = () => {
+    props.onAddAnswer();
+  };
+
 
 //   const saveQnDataHandler = (enteredQnData) => {
 //     const qnData = {
@@ -70,6 +76,7 @@ const Recent_qn = (props) => {
             <NewAnswer
               id={props.id}
               onSolveQuestion={saveSolvedQuestionDataHandler}
+              onSubmitAnswer={reloadQnsHandler}
             />
           </div>
         </div>

@@ -1,37 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Articles from "./Articles/Articles";
-import Apartments from "./Apartments/Apartments";
 import NewArticle from "./Articles/NewArticle";
 import JobListing from "./Jobs/JobListing";
 import PropertyListing from "./Housing/property/ProperyListing";
 
 const Home = () => {
-  const apartments = [
-    {
-      id: "e1",
-      image: "/images/home1.jpg",
-      title: "Kayappatta House",
-      location: "Lose Angeles, New York, NY 10012",
-      rent: "$350 per month",
-      facility: "1-3 Beds",
-      details:
-        "1 Month Free Cat Friendly Fitness Center Pool Dishwasher Refrigerator Kitchen In Unit Washer & Dryer Walk-In Closets....",
-      date: new Date(2020, 12, 8),
-    },
-    {
-      id: "e1",
-      image: "/images/home1.jpg",
-      title: "Kayappatta House",
-      location: "Lose Angeles, New York, NY 10012",
-      rent: "$350 per month",
-      facility: "1-3 Beds",
-      details:
-        "1 Month Free Cat Friendly Fitness Center Pool Dishwasher Refrigerator Kitchen In Unit Washer & Dryer Walk-In Closets....",
-      date: new Date(2020, 12, 8),
-    },
-  ];
-
   const token = localStorage.getItem("token");
   console.log(token);
 
@@ -60,6 +34,7 @@ const Home = () => {
 
   const addArticleHandler = (article) => {
     setArticles((prevArticles) => [article, ...prevArticles]);
+    fetchArticles();
   };
 
 
@@ -91,7 +66,7 @@ const Home = () => {
                   key={article._id}
                   id={article._id}
                   title={article.title}
-                  image={article.image}
+                  image={article.image ? article.image : ""}
                   article={article.content}
                   author={
                     article.author && article.author.name
@@ -121,24 +96,6 @@ const Home = () => {
 
       <div className="right_bar">
         <h3>Apartments Nearby</h3>
-        {/* <Apartments
-          image={apartments[0].image}
-          title={apartments[0].title}
-          location={apartments[0].location}
-          rent={apartments[0].rent}
-          facility={apartments[0].facility}
-          details={apartments[0].details}
-          date={apartments[0].date}
-        />
-        <Apartments
-          image={apartments[0].image}
-          title={apartments[0].title}
-          location={apartments[0].location}
-          rent={apartments[0].rent}
-          facility={apartments[0].facility}
-          details={apartments[0].details}
-          date={apartments[0].date}
-        /> */}
         <PropertyListing />
       </div>
     </div>

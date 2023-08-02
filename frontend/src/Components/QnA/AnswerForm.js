@@ -24,6 +24,7 @@ const AnswerForm = (props) => {
     }
     // console.log(answerData);
     props.onSaveAnswerData(answerData);
+   
     setEnteredAnswer('');
     const token = localStorage.getItem('token');
     try{
@@ -38,6 +39,7 @@ const AnswerForm = (props) => {
       if (response.ok) {
         const data = await response.json();
         console.log('answer data received');
+        props.onSubmitSuccesful();
 
       } else {
         const errorText = await response.text();

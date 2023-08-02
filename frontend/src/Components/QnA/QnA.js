@@ -19,11 +19,19 @@ const QnA = (props) => {
   const [loading, setLoading] = useState(true); 
 
   const addQnHandler = (recentQns) => {
-    fetchQuestions();
     setRecentQns((prevRecentQns) => {
       return [recentQns, ...prevRecentQns];
     });  
+    fetchQuestions();
+    fetchQnA();
   };
+
+
+  const loadQnaHandler = () => {
+    fetchQnA();
+    fetchQuestions();
+  };
+
   
 
   const token = localStorage.getItem('token');
@@ -74,10 +82,16 @@ const QnA = (props) => {
     }
   };
 
+
+
+
   useEffect(() => {
     fetchQnA();
     fetchQuestions();
   }, []);
+
+  const sortByDate = (a, b) => new Date(b.createdAt) - new Date(a.createdAt);
+
 
 
 
@@ -88,7 +102,7 @@ const QnA = (props) => {
           <h3>Unanswered Questions</h3>
         </div>
         <div className="recent_qn_list">
-          {unansweredQuestions.map((recent_qn) => (
+          {unansweredQuestions.sort(sortByDate).map((recent_qn) => (
             <Recent_qn
               key={recent_qn._id}
               qn={recent_qn.content}
@@ -97,6 +111,7 @@ const QnA = (props) => {
               date={recent_qn.createdAt}
               author={recent_qn.author.name}
               auth_pic={recent_qn.author.profilePicture}
+              onAddAnswer={loadQnaHandler}
             />
           ))}
         </div>
@@ -111,7 +126,7 @@ const QnA = (props) => {
               <div className="circle"></div>
             </div>
           ) : (
-            qnaDetails.map((details) => (
+            qnaDetails.sort(sortByDate).map((details) => (
               <Qns
                 key={details._id}
                 id={details._id}
@@ -124,6 +139,8 @@ const QnA = (props) => {
                 topics={details.topics}
                 title={details.title}
                 likes={details.likes.length}
+                onAddAnswer={loadQnaHandler}
+                onAddcomment={loadQnaHandler}
               />
             ))
           )}

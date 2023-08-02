@@ -7,7 +7,6 @@ import Signup from "./Components/Signup/Signup";
 import Company_Signup from "./Components/Signup/Company_Signup";
 import Login from "./Components/Login/Login";
 import Jobs from "./Components/Jobs/Jobs";
-import ArticleDetails from "./Components/Articles/ArticleDetails";
 import JobDashBoard from "./Components/JobAdmin/JobDashBoard";
 import Admin from "./Components/Admin/Admin";
 import Housing from "./Components/Housing/property/Property";
@@ -23,7 +22,6 @@ const router = createBrowserRouter([
     element: <Route />,
     children: [
       { path: "/blogs", element: <Home /> },
-      { path: "/blogs/:blogId", element: <ArticleDetails /> },
       { path: "/qna", element: <QnA /> },
       { path: "/jobs", element: <Jobs /> },
       { path: "/profile", element: <Profile /> },
